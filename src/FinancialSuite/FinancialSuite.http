@@ -1,0 +1,6 @@
+@FinancialSuite_HostAddress = http://localhost:5138
+
+GET {{FinancialSuite_HostAddress}}/
+Accept: application/json
+
+###

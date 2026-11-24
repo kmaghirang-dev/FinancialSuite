@@ -1,0 +1,79 @@
+﻿@FinancialSuite.API_HostAddress = https://localhost:7265
+@token = <paste the accessToken returned by POST /api/identity/login>
+
+
+GET {{FinancialSuite.API_HostAddress}}/api/dropdown/category
+Authorization: Bearer {{token}}
+
+###
+GET {{FinancialSuite.API_HostAddress}}/api/dropdown/category/510a1c42-dba2-4bdd-7540-08defd71345c
+
+###
+POST {{FinancialSuite.API_HostAddress}}/api/dropdown/category
+Content-Type: application/json
+
+{
+  "Value": "Test Category 2",
+  "CreatedBy": "Test User"
+}
+
+###
+DELETE {{FinancialSuite.API_HostAddress}}/api/dropdown/category/4f55dbc4-10be-43c7-7541-08defd713123
+
+###
+PATCH {{FinancialSuite.API_HostAddress}}/api/dropdown/category/bee5cca3-cc36-4503-104a-08df002edfe4
+Content-Type: application/json
+
+{
+  "Value": "Test Updated Category",
+  "UpdatedBy": "Test User"
+}
+
+###
+
+PATCH {{FinancialSuite.API_HostAddress}}/api/dropdown/category/toggle/bee5cca3-cc36-4503-104a-08df002edfe4
+Content-Type: application/json
+
+{
+  "IsActive": false,
+  "UpdatedBy": "Test User"
+}
+
+###
+POST {{FinancialSuite.API_HostAddress}}/api/dropdown/category/510a1c42-dba2-4bdd-7540-08defd71345c/details
+Content-Type: application/json
+
+{
+  "Code": "TEST",
+  "DisplayValue": "TEST",
+  "CreatedBy": "Test User"
+}
+
+###
+GET {{FinancialSuite.API_HostAddress}}/api/dropdown/category/9c26ecb2-9bb1-4f17-e489-08deff21ee3d/details
+
+###
+GET {{FinancialSuite.API_HostAddress}}/api/dropdown/category/510a1c42-dba2-4bdd-7540-08defd71345c/details/39440155-781e-4e42-55b8-08defd71344e
+
+###
+
+DELETE {{FinancialSuite.API_HostAddress}}/api/dropdown/category/{id}/details
+
+###
+POST {{FinancialSuite.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"P@ssword1"
+}
+
+###
+POST {{FinancialSuite.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"P@ssword1"
+}
+

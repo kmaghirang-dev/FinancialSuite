@@ -30,6 +30,9 @@ namespace FinancialSuite.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            // Ownership rules read by MyApplicationDbContext; scoped so it follows the current request's user.
+            services.AddScoped<IDataOwnershipContext, DataOwnershipContext>();
+
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyApplicationDbContext>(options => 
                 options.UseSqlServer(connectionString)
@@ -52,6 +55,9 @@ namespace FinancialSuite.Infrastructure.Extensions
             services.AddScoped<IProjectsRepository, ProjectsRepository>();
             services.AddScoped<IErrorLogRepository, ErrorLogRepository>();
             services.AddScoped<IMediaLibraryRepository, MediaLibraryRepository>();
+            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+            services.AddScoped<ICreditCardStatementRepository, CreditCardStatementRepository>();
+            services.AddScoped<ICreditCardPaymentRepository, CreditCardPaymentRepository>();
 
             // External APIs — inject IApiConnector to call absolute URLs. An API with its own base address and timeout
             // registers a named HttpClient and wraps it in an ApiConnector, for example:

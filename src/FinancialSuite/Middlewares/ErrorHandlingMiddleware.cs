@@ -19,6 +19,12 @@ namespace FinancialSuite.API.Middlewares
                 await context.Response.WriteAsync(notFound.Message);
                 logger.LogWarning(notFound.Message);
             }
+            catch (ConflictException conflict)
+            {
+                context.Response.StatusCode = 409;
+                await context.Response.WriteAsync(conflict.Message);
+                logger.LogWarning("Conflict: {Message}", conflict.Message);
+            }
             catch (ForbidException)
             {
                 context.Response.StatusCode = 403;
